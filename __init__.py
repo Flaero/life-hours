@@ -1,20 +1,21 @@
 from flask import Flask, Markup, render_template, request
 from datetime import datetime
-import time
 import pymysql
+import time
+import os
 
 
 sanitize = str.maketrans('', '', """;:|{()}[]+=\*_"'""")
 
 # Configuration
-database_user = 'USER'
-database_password = 'PASSWORD'
-database_name = 'life_hours'
-database_ip = 'localhost'
+db_user = os.environ['DB_USER']
+db_password = os.environ['DB_PASSWORD']
+db_name = os.environ['DB_NAME']
+db_ip = os.environ['DB_IP']
 
 
 # Connect to mysql or mariadb server
-db = pymysql.connect(database_ip, database_user, database_password, database_name)
+db = pymysql.connect(db_ip, db_user, db_password, db_name)
 c = db.cursor()
 
 
